@@ -67,9 +67,16 @@
     <label for="sheetSelect">Select Sheet:</label>
     <select id="sheetSelect"></select>
     <button id="downloadBtn">Download Excel</button>
+    <button id="reallocateBtn">Reallocate Shipment</button>
   </div>
 
   <div id="tableContainer"></div>
+  <div id="reallocateReview" style="display:none;">
+    <h3>JulyForecast Review</h3>
+    <div id="julyForecastContainer"></div>
+    <button id="acceptAllocBtn">Accept Allocations</button>
+    <button id="rejectAllocBtn">Reject Allocations</button>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="script.js"></script>
