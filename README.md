@@ -1,4 +1,4 @@
-# Smart Sheet Editor Python
+# SW Load Optimization POC
 
 This simple Flask application allows uploading Excel `.xlsx` files from the browser and returns their contents as JSON. The app reads every sheet in the workbook using `pandas` and `openpyxl`.
 
