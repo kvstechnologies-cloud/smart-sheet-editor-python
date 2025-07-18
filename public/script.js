@@ -8,6 +8,11 @@ const downloadBtn = document.getElementById('downloadBtn');
 const uploadBtn = document.getElementById('uploadBtn');
 const controls = document.getElementById('controls');
 const dropZone = document.getElementById('dropZone');
+const reallocateBtn = document.getElementById('reallocateBtn');
+const reallocateReview = document.getElementById('reallocateReview');
+const julyContainer = document.getElementById('julyForecastContainer');
+const acceptAllocBtn = document.getElementById('acceptAllocBtn');
+const rejectAllocBtn = document.getElementById('rejectAllocBtn');
 
 // ✅ Browse button triggers file input
 document.getElementById('browseBtn').addEventListener('click', (e) => {
@@ -32,6 +37,18 @@ dropZone.addEventListener('drop', (e) => {
   e.preventDefault();
   dropZone.classList.remove('dragover');
   fileInput.files = e.dataTransfer.files;
+});
+
+reallocateBtn.addEventListener('click', showJulyForecast);
+
+acceptAllocBtn.addEventListener('click', () => {
+  alert('Allocations accepted');
+  reallocateReview.style.display = 'none';
+});
+
+rejectAllocBtn.addEventListener('click', () => {
+  alert('Allocations rejected');
+  reallocateReview.style.display = 'none';
 });
 
 // ✅ Upload file to backend
@@ -122,6 +139,35 @@ function displaySheet(sheet) {
   });
 
   tableContainer.appendChild(table);
+}
+
+function showJulyForecast() {
+  const sheet = workbookData.find(s => s.name === 'JulyForecast');
+  if (!sheet) {
+    alert('JulyForecast sheet not found');
+    return;
+  }
+  julyContainer.innerHTML = '';
+  const cols = Object.keys(sheet.data[0] || {});
+  const table = document.createElement('table');
+  const headerRow = document.createElement('tr');
+  cols.forEach(col => {
+    const th = document.createElement('th');
+    th.textContent = col;
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+  sheet.data.forEach(row => {
+    const tr = document.createElement('tr');
+    cols.forEach(col => {
+      const td = document.createElement('td');
+      td.textContent = row[col] ?? '';
+      tr.appendChild(td);
+    });
+    table.appendChild(tr);
+  });
+  julyContainer.appendChild(table);
+  reallocateReview.style.display = 'block';
 }
 
 downloadBtn.addEventListener('click', () => {
