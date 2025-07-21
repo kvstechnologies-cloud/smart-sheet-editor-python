@@ -3,79 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <title>SW Load Optimization POC</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-    }
-
-    #dropZone {
-      border: 2px dashed #ccc;
-      padding: 40px;
-      text-align: center;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      background: #f8f8f8;
-      transition: background-color 0.3s;
-    }
-
-    #dropZone.dragover {
-      background-color: #e6f7ff;
-      border-color: #1e90ff;
-    }
-
-    #fileInput {
-      display: none;
-    }
-
-    button, select {
-      margin-top: 10px;
-      padding: 6px 12px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      padding: 8px;
-      border: 1px solid #ccc;
-    }
-
-    input[type="number"] {
-      width: 100px;
-    }
-  </style>
+  <link rel="stylesheet" href="https://www.smurfitwestrock.com/Areas/DigitalMarketingPlatform/Assets/css/main.min.202507011945.css">
 </head>
+
 <body>
 
-  <h2>SW Load Optimization POC</h2>
+  <div class="container">
+    <h2>SW Load Optimization POC</h2>
 
-  <div id="dropZone">
-    <p>Drag & Drop Excel/CSV file here</p>
-    <p>or</p>
-    <label>
-      <button id="browseBtn">Browse</button>
-      <input type="file" id="fileInput" accept=".xlsx,.csv" />
-    </label>
-    <button id="uploadBtn">Upload</button>
-  </div>
+    <div id="dropZone" class="my-4 p-5 border rounded text-center">
+      <p>Drag & Drop Excel/CSV file here</p>
+      <p>or</p>
+      <label>
+        <button id="browseBtn">Browse</button>
+        <input type="file" id="fileInput" accept=".xlsx,.csv" />
+      </label>
+      <button id="uploadBtn">Upload</button>
+    </div>
 
-  <div id="controls" style="display: none;">
-    <label for="sheetSelect">Select Sheet:</label>
-    <select id="sheetSelect"></select>
-    <button id="downloadBtn">Download Excel</button>
-    <button id="reallocateBtn">Reallocate Shipment</button>
-  </div>
+    <div id="controls" style="display: none;" class="mb-3">
+      <label for="sheetSelect">Select Sheet:</label>
+      <select id="sheetSelect"></select>
+      <button id="downloadBtn">Download Excel</button>
+      <button id="reallocateBtn">Reallocate Shipment</button>
+    </div>
 
-  <div id="tableContainer"></div>
-  <div id="reallocateReview" style="display:none;">
-    <h3>JulyForecast Review</h3>
-    <div id="julyForecastContainer"></div>
-    <button id="acceptAllocBtn">Accept Allocations</button>
-    <button id="rejectAllocBtn">Reject Allocations</button>
+    <div id="tableContainer"></div>
+    <div id="reallocateReview" style="display:none;">
+      <h3>JulyForecast Review</h3>
+      <div id="julyForecastContainer"></div>
+      <button id="acceptAllocBtn">Accept Allocations</button>
+      <button id="rejectAllocBtn">Reject Allocations</button>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
